@@ -1,3 +1,0 @@
-- name: ensure curl is installed
-  apt: name=curl state=present
-  sudo: yes

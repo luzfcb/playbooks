@@ -1,8 +1,0 @@
-- name: be sure bash_aliases is configured
-  copy: src=bash_aliases dest={{ ansible_env.HOME }}/.bash_aliases owner={{ ansible_user_id }}
-
-- name: ensure ssh directory exists
-  file: path={{ ansible_env.HOME }}/.ssh state=directory
-
-- name: be sure ssh is configured
-  copy: src=ssh_config dest={{ ansible_env.HOME }}/.ssh/config owner={{ ansible_user_id }}
