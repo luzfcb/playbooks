@@ -1,0 +1,15 @@
+- name: ensure apt-fast repository is installed
+  apt_repository: repo='ppa:saiarcot895/myppa' state=present
+  become: yes
+  become_method: sudo
+
+- name: update apt packages cache
+  apt: update_cache=yes
+  become: yes
+  become_method: sudo
+
+- name: ensure apt-fast is installed
+  apt: name=apt-fast state=present
+  become: yes
+  become_method: sudo
+

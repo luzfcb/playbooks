@@ -1,0 +1,25 @@
+- name: update apt packages cache
+  apt: update_cache=yes
+  become: yes
+  become_method: sudo
+
+- name: ensure tint2 is installed
+  apt: name=tint2 state=present
+  become: yes
+  become_method: sudo
+
+- name: ensure user autostart directory exists
+  file: path={{ ansible_env.HOME }}/.config/autostart state=directory
+
+
+# http://askubuntu.com/questions/304201/what-are-all-the-autostart-locations-in-ubuntu
+
+- name: be sure tint2 is configured to autostart
+  copy: src=tint2.desktop dest={{ ansible_env.HOME }}/.config/autostart/tint2.desktop owner={{ ansible_user_id }}
+  when: "tint2_global_autostart == False"
+
+- name: be sure tint2 is configured to autostart global
+  copy: src=tint2.desktop dest=/etc/xdg/autostart/tint2.desktop
+  when: "tint2_global_autostart == True"
+  become: yes
+  become_method: sudo

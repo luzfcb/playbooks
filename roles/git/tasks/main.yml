@@ -1,6 +1,7 @@
 - name: ensure git is installed
   apt: name=git state=present
-  sudo: yes
+  become: yes
+  become_method: sudo
 
 - name: be sure git is configured
-  copy: src=gitconfig dest={{ ansible_env.HOME }}/.gitconfig owner={{ ansible_user_id }}
+  template: src=gitconfig.j2 dest={{ ansible_env.HOME }}/.gitconfig owner={{ ansible_user_id }}

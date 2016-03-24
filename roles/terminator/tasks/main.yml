@@ -1,3 +1,0 @@
-- name: ensure terminator is installed
-  apt: name=terminator state=present
-  sudo: yes

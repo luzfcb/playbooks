@@ -1,6 +1,6 @@
 [user]
-    name = Diego Garcia
-    email = drgarcia1986@gmail.com
+    name = {{ git_full_name }}
+    email = {{ git_email }}
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     delete-merged-branches = "!git branch --merged master | grep -v master | xargs git branch -D"
