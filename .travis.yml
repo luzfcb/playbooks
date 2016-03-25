@@ -11,6 +11,7 @@ script:
 
 before_script:
      - sudo apt-add-repository --yes ppa:gregory-hainaut/pcsx2.official.ppa
+     - ls /etc/apt/sources.list.d/
      - sudo apt-get update
      - apt-cache showpkg pcsx2
      - sudo apt-get install pcsx2 --yes
