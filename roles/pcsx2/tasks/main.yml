@@ -10,20 +10,21 @@
   become: yes
   become_method: sudo
 
-- shell: "ls /etc/apt/sources.list.d/"
-  register: sources_list_directory
+#- shell: "ls /etc/apt/sources.list.d/"
+#  register: sources_list_directory
+#
+#- shell: "apt-cache search pcsx2"
+#  register: pcsx2_available_package
+#
+#- name: Display sources_list_directory
+#  debug: var=sources_list_directory
+#
+#- name: Display pcsx2_available_package from apt-cache
+#  debug: var=pcsx2_available_package
 
-- shell: "apt-cache search pcsx2"
-  register: pcsx2_available_package
-
-- name: Display sources_list_directory
-  debug: var=sources_list_directory
-
-- name: Display pcsx2_available_package from apt-cache
-  debug: var=pcsx2_available_package
-
-- name: ensure pcsx2 is installed
-  apt: name=pcsx2 state=present
+# pacotes 32bits necessitam ser explicitamente indicados no ansible
+- name: ensure pcsx2:i386 is installed
+  apt: name=pcsx2:i386 state=present
   when: ansible_distribution == 'Ubuntu'
   become: yes
   become_method: sudo

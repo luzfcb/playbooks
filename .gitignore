@@ -1,3 +1,6 @@
 *.sw[op]
 group_vars/*
 !group_vars/*.example
+workstation.retry
+*~
+
