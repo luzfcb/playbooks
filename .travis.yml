@@ -1,17 +1,38 @@
+---
 sudo: required
-dist: trusty
-language: python
-python:
-  - "2.7"
+
+env:
+  - distribution: ubuntu
+    version: xenial-20160314.4
+    init: /sbin/init
+    run_opts: ""
 
 services:
   - docker
 
+before_install:
+  # - sudo apt-get update
+  # Pull container
+  - 'sudo docker pull ${distribution}:${version}'
+  # Customize container
+  - 'sudo docker build --rm=true --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests'
+
 script:
-     - ansible-playbook workstation.yml --syntax-check
-     - ansible-playbook workstation.yml -vvvv --sudo
+  - container_id=$(mktemp)
+    # Run container in detached state
+  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
 
-before_script:
-    - pip install pip setuptools wheel -U -q
-    - pip install ansible -q
+  # Ansible syntax check.
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
 
+  # Test role.
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml'
+
+  # Test role idempotence.
+  - >
+    sudo docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+  # Clean up
+  - 'sudo docker stop "$(cat ${container_id})"'
