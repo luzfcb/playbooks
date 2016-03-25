@@ -17,10 +17,10 @@
   register: pcsx2_available_package
 
 - name: Display sources_list_directory
-  debug: var=sources_list_directory verbosity=2
+  debug: var=sources_list_directory verbosity=4
 
 - name: Display pcsx2_available_package from apt-cache
-  debug: var=pcsx2_available_package verbosity=2
+  debug: var=pcsx2_available_package verbosity=4
 
 - name: ensure pcsx2 is installed
   apt: name=pcsx2 state=present
