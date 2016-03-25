@@ -1,0 +1,18 @@
+- name: ensure indicator-brightness repository is installed
+  apt_repository: repo='ppa:indicator-brightness/ppa' state=present
+  when: ansible_distribution == 'Ubuntu'
+  become: yes
+  become_method: sudo
+
+- name: update apt packages cache
+  apt: update_cache=yes
+  when: ansible_distribution == 'Ubuntu'
+  become: yes
+  become_method: sudo
+
+- name: ensure indicator-brightness is installed
+  apt: name=indicator-brightness state=present
+  when: ansible_distribution == 'Ubuntu'
+  become: yes
+  become_method: sudo
+

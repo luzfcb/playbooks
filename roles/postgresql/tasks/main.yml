@@ -1,0 +1,21 @@
+- name: be sure postgresql oficial repository is configured
+  template: src=pgdg.list.j2 dest=/etc/apt/sources.list.d/pgdg.list
+  become: yes
+  become_method: sudo
+
+- name: be sure postgresql oficial repository key is configured
+  apt_key: id=ACCC4CF8 url=https://www.postgresql.org/media/keys/ACCC4CF8.asc state=present
+  become: yes
+  become_method: sudo
+
+- name: update apt packages cache
+  apt: update_cache=yes
+  become: yes
+  become_method: sudo
+
+- name: ensure pgadmin3 is installed
+  apt: name=pgadmin3 state=present
+  become: yes
+  become_method: sudo
+
+

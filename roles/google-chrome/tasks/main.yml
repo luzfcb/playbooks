@@ -1,0 +1,16 @@
+- name: be sure google-chrome repository has is configured
+  copy: src=google-chrome.list dest=/etc/apt/sources.list.d/google-chrome.list
+  become: yes
+  become_method: sudo
+
+- name: update apt packages cache
+  apt: update_cache=yes
+  become: yes
+  become_method: sudo
+
+- name: ensure google-chrome-stable is installed
+  apt: name=google-chrome-stable state=present
+  become: yes
+  become_method: sudo
+
+
