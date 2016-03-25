@@ -1,3 +1,6 @@
+sudo: required
+dist: trusty
+
 script: ansible-playbook workstation.yml -vv
 
 before_script:
