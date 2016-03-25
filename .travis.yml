@@ -7,7 +7,7 @@ python:
 script: ansible-playbook workstation.yml -vv
 
 before_script:
-    - pip install pip setuptools wheel -U
-    - pip install ansible 
+    - pip install pip setuptools wheel -U -q
+    - pip install ansible -q
     - rm -rf ~/.vim
     - rm -rf ~/.ssh
