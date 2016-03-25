@@ -3,7 +3,7 @@ RUN apt-get update
 
 # Install Ansible
 RUN apt-get update
-RUN apt-get install -y software-properties-common ubuntu-desktop python-pip
+RUN apt-get install -y software-properties-common python-pip
 RUN pip install ansible
 
 # Install Ansible inventory file
