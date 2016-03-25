@@ -1,7 +1,7 @@
 Playbooks
 =========
 
-[![Build Status](https://travis-ci.org/drgarcia1986/playbooks.svg)](https://travis-ci.org/drgarcia1986/playbooks)
+[![Build Status](https://travis-ci.org/luzfcb/playbooks.svg)](https://travis-ci.org/luzfcb/playbooks)
 
 The ansible playbooks to deploy my machine (only on Ubuntu)
 
