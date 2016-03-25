@@ -4,18 +4,14 @@ language: python
 python:
   - "2.7"
 
+services:
+  - docker
+
 script:
-     - "apt-cache search pcsx2 | grep pcsx2 && (echo 'pcsx2 is available. test: pass' && exit 0) || (echo 'pcsx2 is unavailable test: fail' && exit 1)"
-#     - ansible-playbook workstation.yml --syntax-check
-#     - ansible-playbook workstation.yml -vvvv --sudo
+     - ansible-playbook workstation.yml --syntax-check
+     - ansible-playbook workstation.yml -vvvv --sudo
 
 before_script:
-     - sudo apt-add-repository --yes ppa:gregory-hainaut/pcsx2.official.ppa
-     - ls /etc/apt/sources.list.d/
-     - sudo apt-get update
-     - sudo apt-get install pcsx2 --yes --print-uris -V
-     - sudo apt-get install pcsx2 --yes
-#    - pip install pip setuptools wheel -U -q
-#    - pip install ansible -q
-#    - rm -rf ~/.vim
-#    - rm -rf ~/.ssh
+    - pip install pip setuptools wheel -U -q
+    - pip install ansible -q
+
