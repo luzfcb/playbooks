@@ -1,4 +1,9 @@
-# ps: I am no expert on security
+# usage:
+# wget -O - https://raw.githubusercontent.com/luzfcb/playbooks/master/deploy_my_machine.sh | bash
+# ainda nao funciona por esse modo, preciso descobrir porque nao esta travando ate na hora de digitar a senha
+# contudo, se vc baixar e excutar com ./deploy_my_machine.sh ele funciona
+# 
+# ps: I am no security expert
 # 
 # http://unix.stackexchange.com/questions/10922/temporarily-suspend-bash-history-on-a-given-shell
 
