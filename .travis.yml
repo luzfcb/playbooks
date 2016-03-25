@@ -5,11 +5,14 @@ python:
   - "2.7"
 
 script:
-    - ansible-playbook workstation.yml --syntax-check
-    - ansible-playbook workstation.yml -vvvv --sudo
+     - apt-cache search pcsx2 | grep pcsx2 && (echo 'pcsx2 is available. test: pass' && exit 0) || (echo 'pcsx2 is unavailable. test: fail' && exit 1)
+    #- ansible-playbook workstation.yml --syntax-check
+    #- ansible-playbook workstation.yml -vvvv --sudo
 
 before_script:
-    - pip install pip setuptools wheel -U -q
-    - pip install ansible -q
-    - rm -rf ~/.vim
-    - rm -rf ~/.ssh
+     - sudo apt-add-repository --yes ppa:gregory-hainaut/pcsx2.official.ppa
+     - sudo apt-get install pcsx2:i386 --yes
+#    - pip install pip setuptools wheel -U -q
+#    - pip install ansible -q
+#    - rm -rf ~/.vim
+#    - rm -rf ~/.ssh
