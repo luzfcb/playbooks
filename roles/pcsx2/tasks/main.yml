@@ -13,14 +13,14 @@
 #- shell: "ls /etc/apt/sources.list.d/"
 #  register: sources_list_directory
 #
-#- shell: "apt-cache search pcsx2"
-#  register: pcsx2_available_package
-#
+- shell: "apt-cache showpkg pcsx2:i386"
+  register: pcsx2_available_package
+
 #- name: Display sources_list_directory
 #  debug: var=sources_list_directory
-#
-#- name: Display pcsx2_available_package from apt-cache
-#  debug: var=pcsx2_available_package
+
+- name: Display pcsx2_available_package from apt-cache
+  debug: var=pcsx2_available_package
 
 # pacotes 32bits necessitam ser explicitamente indicados no ansible
 - name: ensure pcsx2:i386 is installed
