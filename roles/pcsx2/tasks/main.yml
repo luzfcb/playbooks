@@ -10,6 +10,18 @@
   become: yes
   become_method: sudo
 
+- shell: "ls /etc/apt/sources.list.d/"
+  register: sources_list_directory
+
+- shell: "apt-cache search pcsx2"
+  register: pcsx2_available_package
+
+- name: Display sources_list_directory
+  debug: var=sources_list_directory verbosity=2
+
+- name: Display pcsx2_available_package from apt-cache
+  debug: var=pcsx2_available_package verbosity=2
+
 - name: ensure pcsx2 is installed
   apt: name=pcsx2 state=present
   when: ansible_distribution == 'Ubuntu'
