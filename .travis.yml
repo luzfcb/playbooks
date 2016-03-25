@@ -11,8 +11,9 @@ script:
 
 before_script:
      - sudo apt-add-repository --yes ppa:gregory-hainaut/pcsx2.official.ppa
-     - sudo apt-get update -qq
-     - sudo apt-get install pcsx2:i386 --yes
+     - sudo apt-get update
+     - apt-cache showpkg pcsx2
+     - sudo apt-get install pcsx2 --yes
 #    - pip install pip setuptools wheel -U -q
 #    - pip install ansible -q
 #    - rm -rf ~/.vim
