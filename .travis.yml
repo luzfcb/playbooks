@@ -4,7 +4,7 @@ language: python
 python:
   - "2.7"
 
-script: ansible-playbook workstation.yml -vv
+script: ansible-playbook workstation.yml -vvvv
 
 before_script:
     - pip install pip setuptools wheel -U -q
