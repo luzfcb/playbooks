@@ -7,6 +7,7 @@ RUN apt-get install -y software-properties-common python-pip python-dev build-es
 RUN pip install ansible
 
 # Install Ansible inventory file
+RUN mkdir -p /etc/ansible/
 RUN echo "[home]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
 RUN echo "[defaults]\nhostfile=./hosts" > /etc/ansible/ansible.cfg
 
