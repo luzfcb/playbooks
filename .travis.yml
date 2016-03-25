@@ -13,8 +13,8 @@ before_script:
      - sudo apt-add-repository --yes ppa:gregory-hainaut/pcsx2.official.ppa
      - ls /etc/apt/sources.list.d/
      - sudo apt-get update
-     - apt-cache policy
-     - sudo apt-get install pcsx2 --yes --print-uris
+     - apt-cache policy && exit 0
+     - sudo apt-get install pcsx2 --yes --print-uris -V
      - sudo apt-get install pcsx2 --yes
 #    - pip install pip setuptools wheel -U -q
 #    - pip install ansible -q
