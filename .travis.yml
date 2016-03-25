@@ -5,9 +5,9 @@ python:
   - "2.7"
 
 script:
-     - apt-cache search pcsx2 | grep pcsx2 && (echo 'pcsx2 is available. test: pass' && exit 0) || (echo 'pcsx2 is unavailable. test: fail' && exit 1)
-    #- ansible-playbook workstation.yml --syntax-check
-    #- ansible-playbook workstation.yml -vvvv --sudo
+     - "apt-cache search pcsx2 | grep pcsx2 && (echo 'pcsx2 is available. test: pass' && exit 0) || (echo 'pcsx2 is unavailable test: fail' && exit 1)"
+#     - ansible-playbook workstation.yml --syntax-check
+#     - ansible-playbook workstation.yml -vvvv --sudo
 
 before_script:
      - sudo apt-add-repository --yes ppa:gregory-hainaut/pcsx2.official.ppa
