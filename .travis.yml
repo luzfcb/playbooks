@@ -26,8 +26,6 @@ script:
     # Run container in detached state
   - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
 
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cp /etc/ansible/roles/role_under_test/ansible.cfg /etc/ansible/roles/role_under_test/hosts /etc/ansible/'
-
   # Ansible syntax check.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/workstation.yml --syntax-check'
 
