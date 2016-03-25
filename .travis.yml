@@ -6,6 +6,6 @@ script: ansible-playbook workstation.yml -vv
 before_script:
     - sudo add-apt-repository ppa:ansible/ansible --yes
     - sudo apt-get update
-    - sudo apt-get install ansible
+    - sudo apt-get install ansible --yes 
     - rm -rf ~/.vim
     - rm -rf ~/.ssh
