@@ -11,13 +11,6 @@
     - 'deb-src http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-updates multiverse'
 
 
-- name: ensure ppa:tsbarnes/indicator-keylock  repository is installed
-  apt_repository: repo='ppa:tsbarnes/indicator-keylock ' state=present
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
-  become: yes
-  become_method: sudo
-
-
 - name: update apt packages cache
   apt: update_cache=yes
   become: yes

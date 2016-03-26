@@ -16,7 +16,6 @@ packates_to_install:
     - graphviz-dev
     - htop
     - imagemagick
-    - indicator-keylock
     - inkscape
     - libfreetype6-dev
     - libjpeg8-dev
