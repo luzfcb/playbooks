@@ -1,9 +1,0 @@
-- name: update apt packages cache
-  apt: update_cache=yes
-  become: yes
-  become_method: sudo
-
-- name: ensure GCC and other basic build tools ( build-essential ) is installed
-  apt: name=build-essential state=present
-  become: yes
-  become_method: sudo

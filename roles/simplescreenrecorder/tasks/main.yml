@@ -1,11 +1,6 @@
-- name: ensure apt-fast repository is installed
-  apt_repository: repo='ppa:saiarcot895/myppa' state=present
+- name: ensure simplescreenrecorder repository is installed
+  apt_repository: repo='ppa:maarten-baert/simplescreenrecorder' state=present
   when: ansible_distribution == 'Ubuntu'
-  become: yes
-  become_method: sudo
-
-- name: update list of keys with apt-key update
-  shell: apt-key update
   become: yes
   become_method: sudo
 
@@ -15,8 +10,8 @@
   become: yes
   become_method: sudo
 
-- name: ensure apt-fast is installed
-  apt: name=apt-fast state=present
+- name: ensure simplescreenrecorder is installed
+  apt: name=simplescreenrecorder state=present
   when: ansible_distribution == 'Ubuntu'
   become: yes
   become_method: sudo

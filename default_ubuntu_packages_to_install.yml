@@ -1,0 +1,51 @@
+---
+
+packates_to_install:
+    - aria2
+    - axel
+    - blt
+    - build-essential
+    - caffeine
+    - cheese
+    - cmake
+    - curl
+    - flashplugin-installer
+    - gettext
+    - gimp
+    - gimp-plugin-registry
+    - gparted
+    - graphviz-dev
+    - htop
+    - imagemagick
+    - indicator-keylock
+    - inkscape
+    - libfreetype6-dev
+    - libjpeg8-dev
+    - libmemcached-dev
+    - libpq-dev
+    - libssl-dev
+    - libwebp-dev
+    - lynx
+    - macchanger
+    - macchanger-gtk
+    - mesa-utils
+    - mesa-utils-extra
+    - p7zip-full
+    - python3-dev
+    - python-dev
+    - rar
+    - ssh
+    - sshfs
+    - synaptic
+    - tix
+    - unetbootin
+    - vlc
+    - vlc-plugin-vlsub
+    - wget
+    - xvfb
+    - xclip
+    - xml2
+    - xmlstarlet
+    - zlib1g-dev
+
+

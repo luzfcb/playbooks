@@ -3,6 +3,11 @@
   become: yes
   become_method: sudo
 
+- name: update list of keys with apt-key update
+  shell: apt-key update
+  become: yes
+  become_method: sudo
+
 - name: update apt packages cache
   apt: update_cache=yes
   become: yes

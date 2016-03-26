@@ -1,0 +1,32 @@
+- name: update apt packages cache
+  apt: update_cache=yes
+  become: yes
+  become_method: sudo
+
+- name: ensure GCC and other basic build tools ( build-essential ) is installed
+  apt: name=build-essential state=present
+  become: yes
+  become_method: sudo
+
+- name: ensure libtiff4-dev and liblcms1-dev is installed to ubuntu 14.04
+  apt: name={{ item }} state=present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
+  with_items: 
+    - libtiff4-dev
+    - liblcms1-dev
+
+- name: ensure libtiff5-dev and liblcms2-dev is installed to ubuntu 16.04
+  apt: name={{ item }} state=present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+  with_items: 
+    - libtiff5-dev
+    - liblcms2-dev
+
+- name: ensure my big package list is installed
+  apt: name={{ item }} state=present
+  become: yes
+  become_method: sudo
+  with_items: "{{ packates_to_install }}"
+
+
+
