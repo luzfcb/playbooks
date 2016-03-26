@@ -24,7 +24,7 @@
 
 # pacotes 32bits necessitam ser explicitamente indicados no ansible
 - name: ensure pcsx2:i386 is installed
-  apt: name=pcsx2:i386 state=present
+  apt: name=pcsx2:i386 state=present force=yes
   when: ansible_distribution == 'Ubuntu'
   become: yes
   become_method: sudo

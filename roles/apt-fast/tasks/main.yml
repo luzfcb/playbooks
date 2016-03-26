@@ -16,7 +16,7 @@
   become_method: sudo
 
 - name: ensure apt-fast is installed
-  apt: name=apt-fast state=present
+  apt: name=apt-fast state=present force=yes
   when: ansible_distribution == 'Ubuntu'
   become: yes
   become_method: sudo

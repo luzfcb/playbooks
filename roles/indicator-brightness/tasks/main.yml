@@ -11,7 +11,7 @@
   become_method: sudo
 
 - name: ensure indicator-brightness is installed
-  apt: name=indicator-brightness state=present
+  apt: name=indicator-brightness state=present force=yes
   when: ansible_distribution == 'Ubuntu'
   become: yes
   become_method: sudo

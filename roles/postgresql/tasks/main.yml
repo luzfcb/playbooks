@@ -14,7 +14,7 @@
   become_method: sudo
 
 - name: ensure pgadmin3 is installed
-  apt: name=pgadmin3 state=present
+  apt: name=pgadmin3 state=present force=yes
   become: yes
   become_method: sudo
 
