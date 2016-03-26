@@ -36,9 +36,8 @@
   become_method: sudo
   with_items: "{{ packates_to_install }}"
 
-- name: ensure libfreetype6, libfreetype6-dev, libfontconfig is installed
-  apt:
-    pgk: '{{item}}'
+- name: ensure libfreetype6, libfreetype6-dev, libfontconfig1 is installed
+  apt: name={{ item }} state=present
   with_items:
     - libfreetype6
     - libfreetype6-dev
@@ -48,5 +47,5 @@
   shell: 'echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections'
 
 - name: 'ensurettf-mscorefonts-installer is installed'
-  apt: pkg=ttf-mscorefonts-installer
+  apt: name=ttf-mscorefonts-installer state=present
 
