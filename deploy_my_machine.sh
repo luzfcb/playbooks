@@ -69,7 +69,7 @@ function run_playbook(){
     
     echo "running playbook"
     ansible-playbook workstation.yml --extra-vars "ansible_become_pass=$user_passwd"
-    cd current_directory
+    cd $current_directory
     rm -r /tmp/deploy_my_machine 2> /dev/null 
 }
 
@@ -87,7 +87,7 @@ run_playbook
 
 unset user_passwd
 
-cd current_directory
+cd $current_directory
 
 # re-enable history record
 set -o history
