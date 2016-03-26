@@ -19,7 +19,7 @@ repro_zip_package_url="https://github.com/$github_username/$playbooks_repro_name
 current_user="$USER"
 
 
-function run_as_full_echo_off()
+function read_secret()
 {   
     
     # Disable echo.
@@ -31,7 +31,7 @@ function run_as_full_echo_off()
     trap 'stty echo' EXIT
 
     # run command
-    "$@"
+    read -p "[sudo] password for $current_user": user_passwd
 
     # Enable echo.
     stty "$stty_orig"
@@ -44,20 +44,17 @@ function run_as_full_echo_off()
     echo
 }
 
-function read_secret(){
-    run_as_full_echo_off read -p "[sudo] password for $current_user": user_passwd
-}
 
 function install_ansible_and_other_required_tools(){
     ansible_repro=$(ls /etc/apt/sources.list.d/ | grep ansible-ansible-)
 
     if [[ -z $ansible_repro ]]; then
-        run_as_full_echo_off  sudo -S <<< "$user_passwd" add-apt-repository ppa:ansible/ansible --yes
+        sudo -S <<< "$user_passwd" add-apt-repository ppa:ansible/ansible --yes
     fi
 
     
-    run_as_full_echo_off sudo -S <<< "$user_passwd" apt-get update
-    run_as_full_echo_off sudo -S <<< "$user_passwd" apt-get install ansible wget unzip --yes
+    sudo -S <<< "$user_passwd" apt-get update
+    sudo -S <<< "$user_passwd" apt-get install ansible wget unzip --yes
 }
 
 function run_playbook(){

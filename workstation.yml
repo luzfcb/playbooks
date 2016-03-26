@@ -6,18 +6,18 @@
    - "default_ubuntu_packages_to_install.yml"
 
   roles:
-    - ubuntu-pacotes-comuns
-    - { role: tint2 }
-    - { role: apt-fast}
-    - { role: git, git_full_name: "Fabio C. Barrioneuvo da Luz", git_email: "bnafta@gmail.com"}
-    - caffeine
-    - indicator-brightness
-    - simplescreenrecorder
-    - postgresql
-    - google-chrome
-    - smartgit
-    - hexchat
-    - { role: pycharm, pycharm_version: "professional", pycharm_release_number: "2016.1" }
+#    - ubuntu-pacotes-comuns
+#    - { role: tint2 }
+#    - { role: apt-fast}
+#    - { role: git, git_full_name: "Fabio C. Barrioneuvo da Luz", git_email: "bnafta@gmail.com"}
+#    - caffeine
+#    - indicator-brightness
+#    - simplescreenrecorder
+#    - postgresql
+#    - google-chrome
+#    - smartgit
+#    - hexchat
+#    - { role: pycharm, pycharm_version: "professional", pycharm_release_number: "2016.1" }
 # inutilidades
-    - pcsx2
+#    - pcsx2
     - steam

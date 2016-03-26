@@ -10,7 +10,7 @@ Automatic install (only on Ubuntu)
 
 ```
 # ainda nao funciona, preciso descobrir porque nao esta travando na hora de digitar a senha
-wget -O - https://raw.githubusercontent.com/luzfcb/playbooks/master/deploy_my_machine.sh | bash
+wget -O /tmp/deploy_my_machine.sh https://raw.githubusercontent.com/luzfcb/playbooks/master/deploy_my_machine.sh && . /tmp/deploy_my_machine.sh
 ```
 
 Manual install
