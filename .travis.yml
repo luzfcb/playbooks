@@ -30,7 +30,7 @@ script:
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook --inventory-file=/etc/ansible/roles/role_under_test/hosts /etc/ansible/roles/role_under_test/workstation.yml --syntax-check -vv'
 
   # Test role.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook --inventory-file=/etc/ansible/roles/role_under_test/hosts /etc/ansible/roles/role_under_test/workstation.yml-vv'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook --inventory-file=/etc/ansible/roles/role_under_test/hosts /etc/ansible/roles/role_under_test/workstation.yml -vv'
 
   # Test role idempotence.
   - >
