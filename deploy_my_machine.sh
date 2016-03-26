@@ -17,7 +17,7 @@ playbooks_repro_name="playbooks"
 repro_zip_package_url="https://github.com/$github_username/$playbooks_repro_name/archive/master.zip"
 
 current_user="$USER"
-
+current_directory=$(pwd)
 
 function read_secret()
 {   
@@ -71,6 +71,7 @@ function run_playbook(){
     
     echo "running playbook"
     ansible-playbook workstation.yml --extra-vars "ansible_become_pass=$user_passwd"
+    cd current_directory
     rm -r /tmp/deploy_my_machine 2> /dev/null 
 }
 
@@ -87,6 +88,8 @@ install_ansible_and_other_required_tools
 run_playbook
 
 unset user_passwd
+
+cd current_directory
 
 # re-enable history record
 set -o history
