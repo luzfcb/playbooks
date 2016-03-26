@@ -18,6 +18,9 @@ repro_zip_package_url="https://github.com/$github_username/$playbooks_repro_name
 
 current_user="$USER"
 current_directory=$(pwd)
+stty_orig=$(stty -g)
+
+trap "stty '$stty_orig'; stty echo" SIGINT SIGTERM
 
 function read_secret()
 {   
@@ -50,7 +53,8 @@ function install_ansible_and_other_required_tools(){
     sudo -S <<< "$user_passwd" apt-get install wget unzip --yes
 
     is_python2_pip=$(pip --version | grep 2.7 &> /dev/null && echo 'yes' || echo 'no')
-    if [ "$is_python2_pip" = "no" ]; then 
+    if [ "$is_python2_pip" = "no" ]; then
+      echo "pip to Python2 is not installed. installing now"
       wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
       sudo -H -S <<< "$user_passwd" python2 /tmp/get-pip.py -U
     fi
