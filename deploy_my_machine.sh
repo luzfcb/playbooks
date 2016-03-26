@@ -49,9 +49,13 @@ function install_ansible_and_other_required_tools(){
     sudo -S <<< "$user_passwd" apt-get update
     sudo -S <<< "$user_passwd" apt-get install wget unzip --yes
 
-    wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
-    sudo -S <<< "$user_passwd" python2 /tmp/get-pip.py -U
-    sudo -S <<< "$user_passwd" pip install ansible -U
+    is_python2_pip=$(pip --version | grep 2.7 &> /dev/null && echo 'yes' || echo 'no')
+    if [ "$is_python2_pip" = "no" ]; then 
+      wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
+      sudo -H -S <<< "$user_passwd" python2 /tmp/get-pip.py -U
+    fi
+
+    sudo -H -S <<< "$user_passwd" pip install ansible -U
 
 }
 
