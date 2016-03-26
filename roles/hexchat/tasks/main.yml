@@ -1,0 +1,18 @@
+- name: ensure ppa:gwendal-lebihan-dev/hexchat-stable repository is installed
+  apt_repository: repo='ppa:gwendal-lebihan-dev/hexchat-stable' state=present
+  when: ansible_distribution == 'Ubuntu'
+  become: yes
+  become_method: sudo
+
+- name: update apt packages cache
+  apt: update_cache=yes
+  when: ansible_distribution == 'Ubuntu'
+  become: yes
+  become_method: sudo
+
+- name: ensure hexchat is installed
+  apt: name=hexchat state=present force=yes
+  when: ansible_distribution == 'Ubuntu'
+  become: yes
+  become_method: sudo
+
