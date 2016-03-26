@@ -5,7 +5,6 @@ packates_to_install:
     - axel
     - blt
     - build-essential
-    - caffeine
     - cheese
     - cmake
     - curl

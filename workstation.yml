@@ -10,6 +10,7 @@
     - { role: tint2 }
     - { role: apt-fast}
     - { role: git, git_full_name: "Fabio C. Barrioneuvo da Luz", git_email: "bnafta@gmail.com"}
+    - caffeine
     - indicator-brightness
     - simplescreenrecorder
     - postgresql
