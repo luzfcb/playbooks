@@ -46,15 +46,13 @@ function read_secret()
 
 
 function install_ansible_and_other_required_tools(){
-    ansible_repro=$(ls /etc/apt/sources.list.d/ | grep ansible-ansible-)
-
-    if [[ -z $ansible_repro ]]; then
-        sudo -S <<< "$user_passwd" add-apt-repository ppa:ansible/ansible --yes
-    fi
-
-    
     sudo -S <<< "$user_passwd" apt-get update
-    sudo -S <<< "$user_passwd" apt-get install ansible wget unzip --yes
+    sudo -S <<< "$user_passwd" apt-get install wget unzip --yes
+
+    wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
+    sudo -S <<< "$user_passwd" python2 /tmp/get-pip.py -U
+    sudo -S <<< "$user_passwd" pip install ansible -U
+
 }
 
 function run_playbook(){
