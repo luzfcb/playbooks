@@ -1,10 +1,18 @@
+
+- name: ensure multiverse repository is enabled
+  apt_repository:
+    repo: "{{item}}"
+  register: multiverse_installed
+  when: ansible_distribution == 'Ubuntu'
+  with_items:
+    - 'deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} multiverse'
+    - 'deb-src http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} multiverse'
+    - 'deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-updates multiverse'
+    - 'deb-src http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-updates multiverse'
+
+
 - name: update apt packages cache
   apt: update_cache=yes
-  become: yes
-  become_method: sudo
-
-- name: ensure GCC and other basic build tools ( build-essential ) is installed
-  apt: name=build-essential state=present
   become: yes
   become_method: sudo
 
@@ -28,5 +36,17 @@
   become_method: sudo
   with_items: "{{ packates_to_install }}"
 
+- name: ensure my big package list is installed
+  apt:
+    pgk: '{{item}}'
+  with_items:
+    - libfreetype6
+    - libfreetype6-dev
+    - libfontconfig
 
+- name: 'Accept License mscorefonts'
+  shell: 'echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections'
+
+- name: 'ensurettf-mscorefonts-installer is installed'
+  apt: pkg=ttf-mscorefonts-installer
 
