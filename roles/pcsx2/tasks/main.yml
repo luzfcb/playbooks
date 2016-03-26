@@ -1,4 +1,4 @@
-- name: ensure pcsx2 repository is installed
+- name: ensure pcsx2 ppa:gregory-hainaut/pcsx2.official.ppa repository is installed
   apt_repository: repo='ppa:gregory-hainaut/pcsx2.official.ppa' state=present
   when: ansible_distribution == 'Ubuntu'
   become: yes
@@ -9,18 +9,6 @@
   when: ansible_distribution == 'Ubuntu'
   become: yes
   become_method: sudo
-
-#- shell: "ls /etc/apt/sources.list.d/"
-#  register: sources_list_directory
-#
-- shell: "apt-cache showpkg pcsx2:i386"
-  register: pcsx2_available_package
-
-#- name: Display sources_list_directory
-#  debug: var=sources_list_directory
-
-- name: Display pcsx2_available_package from apt-cache
-  debug: var=pcsx2_available_package
 
 # pacotes 32bits necessitam ser explicitamente indicados no ansible
 - name: ensure pcsx2:i386 is installed
