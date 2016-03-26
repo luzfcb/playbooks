@@ -1,0 +1,26 @@
+- name: ensure if {{ ansible_env.HOME }}/binarios/smartgit exists
+  file: path={{ ansible_env.HOME }}/binarios/smartgit state=directory mode=0755
+  register: smartgit_directory_exists
+
+- name: ensure aria2 download manager is installed
+  apt: name=aria2 state=present update_cache=yes cache_valid_time=300
+  become: yes
+  become_method: sudo
+
+- name: download smartgit
+  shell: aria2c -k 4M -x 10 -c --dir={{ ansible_env.HOME }}/binarios/smartgit/ --out=smartgit-linux-7_1_2.tar.gz http://www.syntevo.com/static/smart/download/smartgit/smartgit-linux-7_1_2.tar.gz
+  args:
+    executable: /bin/bash
+
+
+- name: ensure smartgit is installed
+  unarchive: src={{ ansible_env.HOME }}/binarios/smartgit/smartgit-linux-7_1_2.tar.gz dest={{ ansible_env.HOME }}/binarios/smartgit copy=no
+#  when: smartgit_directory_exists | changed
+  register: smartgit_extracted
+
+- name: ensure smartgit launcher is installed
+  shell: bash add-menuitem.sh
+  args:
+    chdir: '{{ ansible_env.HOME }}/binarios/smartgit/smartgit/bin/'
+    executable: /bin/bash
+#  when: smartgit_extracted | changed

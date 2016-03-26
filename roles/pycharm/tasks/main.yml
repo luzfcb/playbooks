@@ -1,0 +1,28 @@
+- name: ensure if {{ ansible_env.HOME }}/binarios/pycharm directory exists
+  file: path={{ ansible_env.HOME }}/binarios/pycharm state=directory mode=0755
+  register: pycharm_directory_exists
+
+- name: ensure aria2 download manager is installed
+  apt: name=aria2 state=present update_cache=yes cache_valid_time=300
+  become: yes
+  become_method: sudo
+
+- name: download Pycharm (280MB)
+  shell: aria2c -k 20M -x 10 -c --dir={{ ansible_env.HOME }}/binarios/pycharm --out=pycharm-{{ pycharm_version }}-{{ pycharm_release_number }}.tar.gz http://download.jetbrains.com/python/pycharm-{{ pycharm_version }}-{{ pycharm_release_number }}.tar.gz
+  args:
+    executable: /bin/bash
+
+
+- name: ensure pycharm is installed
+  unarchive: src={{ ansible_env.HOME }}/binarios/pycharm/pycharm-{{ pycharm_version }}-{{ pycharm_release_number }}.tar.gz dest={{ ansible_env.HOME }}/binarios/pycharm copy=no
+#  when: pycharm_directory_exists | changed
+  register: pycharm_extracted
+
+
+- name: ensure if {{ ansible_env.HOME }}/.local/share/applications directory exists
+  file: path={{ ansible_env.HOME }}/.local/share/applications state=directory mode=0755
+  register: applications_exists
+
+- name: ensure pycharm launcher is installed
+  template: src=jetbrains-pycharm.desktop.j2 dest={{ ansible_env.HOME }}/.local/share/applications/jetbrains-pycharm.desktop
+#  when: pycharm_extracted | changed and applications_exists | changed
