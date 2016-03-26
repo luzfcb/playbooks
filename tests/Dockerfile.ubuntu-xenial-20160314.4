@@ -5,7 +5,7 @@ RUN dpkg --add-architecture i386
 # Install Ansible
 RUN apt-get update
 RUN apt-get install -y software-properties-common python-pip python-dev build-essential
-RUN pip install ansible
+RUN pip2 install ansible
 
 # Install Ansible inventory file
 RUN mkdir -p /etc/ansible/
