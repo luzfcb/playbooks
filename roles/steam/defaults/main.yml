@@ -1,0 +1,4 @@
+---
+steam_package_name: steam.deb
+steam_url: https://steamcdn-a.akamaihd.net/client/installer/{{ steam_package_name }} 
+

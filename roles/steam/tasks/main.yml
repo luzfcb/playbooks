@@ -1,0 +1,16 @@
+---
+- name: Check if Steam is installed
+  shell: 'dpkg-query -s steam-launcher && echo "steam_instaled" || echo "steam_not_instaled"'
+  register: steam_check_deb
+
+- name: Download Steam from {{ steam_url }}
+  get_url: 
+    url="{{ steam_url }}"
+    dest="/tmp/{{ steam_package_name }}"
+  when: steam_check_deb.stdout.find('steam_not_instaled') != -1
+
+- name: Install Steam package
+  apt: deb="/tmp/{{ steam_package_name }}" state="present"
+  become: yes
+  become_method: sudo
+  when: steam_check_deb.stdout.find('steam_not_instaled') != -1

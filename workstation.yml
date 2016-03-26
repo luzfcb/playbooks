@@ -17,7 +17,7 @@
     - google-chrome
     - smartgit
     - hexchat
-    - pycharm
+    - { role: pycharm, pycharm_version: "professional", pycharm_release_number: "2016.1" }
 # inutilidades
     - pcsx2
-
+    - steam
