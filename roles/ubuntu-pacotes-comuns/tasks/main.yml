@@ -42,7 +42,7 @@
   with_items:
     - libfreetype6
     - libfreetype6-dev
-    - libfontconfig
+    - libfontconfig1
 
 - name: 'Accept License mscorefonts'
   shell: 'echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections'
