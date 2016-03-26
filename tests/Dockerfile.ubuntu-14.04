@@ -14,4 +14,6 @@ RUN mkdir -p /etc/ansible/
 RUN echo "[home]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
 RUN echo "[defaults]\nhostfile=./hosts" > /etc/ansible/ansible.cfg
 
+ENV ANSIBLE_RETRY_FILES_ENABLED 0
+
 
