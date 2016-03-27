@@ -1,7 +1,5 @@
 # usage:
-# wget -O - https://raw.githubusercontent.com/luzfcb/playbooks/master/deploy_my_machine.sh | bash
-# ainda nao funciona por esse modo, preciso descobrir porque nao esta travando ate na hora de digitar a senha
-# contudo, se vc baixar e excutar com ./deploy_my_machine.sh ele funciona
+# wget -O /tmp/deploy_my_machine.sh https://raw.githubusercontent.com/NOME_DO_SEU_USUARIO_DO_GITHUB/playbooks/master/deploy_my_machine.sh && . /tmp/deploy_my_machine.sh
 # 
 # ps: I am no security expert
 # 
