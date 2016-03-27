@@ -73,6 +73,7 @@ function run_playbook(){
     unzip $playbooks_repro_name
     cd "$playbooks_repro_name-master" || exit
     
+    sudo -H -S <<< "$user_passwd"  rm /var/lib/dpkg/lock > /dev/null
     echo "running playbook"
     ansible-playbook workstation.yml --extra-vars "ansible_become_pass=$user_passwd"
     cd $current_directory
