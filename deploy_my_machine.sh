@@ -48,7 +48,7 @@ function read_secret()
 
 function install_ansible_and_other_required_tools(){
     sudo -S <<< "$user_passwd" apt-get update
-    sudo -S <<< "$user_passwd" apt-get install wget unzip --yes
+    sudo -S <<< "$user_passwd" apt-get install wget unzip python-dev --yes
 
     is_python2_pip=$(pip --version | grep 2.7 &> /dev/null && echo 'yes' || echo 'no')
     if [ "$is_python2_pip" = "no" ]; then
