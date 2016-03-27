@@ -8,8 +8,17 @@ The ansible playbooks to deploy my machine (only on Ubuntu)
 Automatic install (only on Ubuntu)
 ----------------------------------
 
+
+Faça o fork do repositorio e modifique o arquivo `workstation.yml` com as suas configuracoes pessoais.
+
+
 ```
-# ainda nao funciona, preciso descobrir porque nao esta travando na hora de digitar a senha
+wget -O /tmp/deploy_my_machine.sh https://raw.githubusercontent.com/NOME_DO_SEU_USUARIO_DO_GITHUB/playbooks/master/deploy_my_machine.sh && . /tmp/deploy_my_machine.sh
+```
+
+
+
+```
 wget -O /tmp/deploy_my_machine.sh https://raw.githubusercontent.com/luzfcb/playbooks/master/deploy_my_machine.sh && . /tmp/deploy_my_machine.sh
 ```
 
@@ -19,9 +28,9 @@ Manual install
 Install Ansible
 
 ```bash
-sudo add-apt-repository ppa:ansible/ansible --yes
-sudo apt-get update
-sudo apt-get install ansible
+wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
+sudo -H python2 /tmp/get-pip.py -U
+sudo -H pip install ansible
 ```
 
 Run
