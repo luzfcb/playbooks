@@ -70,7 +70,7 @@ function run_playbook(){
     local file_name="$playbooks_repro_name.zip"
     local file_full_output_path="/tmp/deploy_my_machine/$file_name"
     cd /tmp || exit
-    rm -r /tmp/deploy_my_machine 2> /dev/null 
+    sudo -H -S <<< "$user_passwd" rm -r /tmp/deploy_my_machine 2> /dev/null 
     mkdir -p /tmp/deploy_my_machine
     cd /tmp/deploy_my_machine || exit
     wget -O $file_full_output_path "$repro_zip_package_url"
@@ -78,7 +78,8 @@ function run_playbook(){
     unzip $playbooks_repro_name
     cd "$playbooks_repro_name-master" || exit
     
-    sudo -H -S <<< "$user_passwd"  rm /var/lib/dpkg/lock > /dev/null
+    sudo -H -S <<< "$user_passwd" killall update-notifier > /dev/null
+    sudo -H -S <<< "$user_passwd" rm /var/lib/dpkg/lock > /dev/null
     echo "running playbook"
     ansible-playbook workstation.yml --extra-vars "ansible_become_pass=$user_passwd"
     cd $current_directory
@@ -86,21 +87,34 @@ function run_playbook(){
 }
 
 
-# temporary disable history record
-set +o history
+if [[ $EUID -ne 0 ]]; then
+    # temporary disable history record
+    set +o history
+    echo -e "\nIniciando a instalacao" 2>&1
+    
+    # read current user password
+    read_secret
+    
+    # add ansible ppa and install ansible, wget and unzip
+    install_ansible_and_other_required_tools
+    
+    run_playbook
+    
+    unset user_passwd
+    
+    cd $current_directory
+    
+    # re-enable history record
+    set -o history
 
-# read current user password
-read_secret
+    exit 0
+else
+    echo -e "\nPlease not run this with root privilege" 2>&1
+    echo -e "Stopping the installation and exiting\n" 2>&1
 
-# add ansible ppa and install ansible, wget and unzip
-install_ansible_and_other_required_tools
+    exit 1
 
-run_playbook
+fi
 
-unset user_passwd
 
-cd $current_directory
-
-# re-enable history record
-set -o history
 
