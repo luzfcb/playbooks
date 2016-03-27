@@ -56,8 +56,13 @@ function install_ansible_and_other_required_tools(){
       wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
       sudo -H -S <<< "$user_passwd" python2 /tmp/get-pip.py -U
     fi
-
-    sudo -H -S <<< "$user_passwd" pip install ansible -U
+    
+    
+    is_ansible_old_version=$(ansible --version | grep " 2." &> /dev/null && echo 'no' || echo 'yes')
+    if [ "$is_ansible_old_version" = "yes" ]; then
+        sudo -H -S <<< "$user_passwd" pip install ansible -U
+    fi
+    
 
 }
 
