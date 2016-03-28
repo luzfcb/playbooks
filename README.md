@@ -17,11 +17,6 @@ wget -O /tmp/deploy_my_machine.sh https://raw.githubusercontent.com/NOME_DO_SEU_
 ```
 
 
-
-```
-wget -O /tmp/deploy_my_machine.sh https://raw.githubusercontent.com/luzfcb/playbooks/master/deploy_my_machine.sh && . /tmp/deploy_my_machine.sh
-```
-
 Manual install
 --------------
 
@@ -37,6 +32,12 @@ Run
 
 ```bash
 ansible-playbook workstation.yml --ask-sudo-pass
+```
+
+Para mim:
+
+```
+wget -O /tmp/deploy_my_machine.sh https://raw.githubusercontent.com/luzfcb/playbooks/master/deploy_my_machine.sh && . /tmp/deploy_my_machine.sh
 ```
 
 > This repo is based on https://github.com/drgarcia1986/playbooks and https://github.com/renanivo/playbooks
