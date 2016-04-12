@@ -4,6 +4,8 @@
     repo: "{{item}}"
   register: multiverse_installed
   when: ansible_distribution == 'Ubuntu'
+  become: yes
+  become_method: sudo
   with_items:
     - 'deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} multiverse'
     - 'deb-src http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} multiverse'
@@ -19,6 +21,8 @@
 - name: ensure libtiff4-dev and liblcms1-dev is installed to ubuntu 14.04
   apt: name={{ item }} state=present
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
+  become: yes
+  become_method: sudo
   with_items: 
     - libtiff4-dev
     - liblcms1-dev
@@ -26,6 +30,8 @@
 - name: ensure libtiff5-dev and liblcms2-dev is installed to ubuntu 16.04
   apt: name={{ item }} state=present
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+  become: yes
+  become_method: sudo
   with_items: 
     - libtiff5-dev
     - liblcms2-dev
@@ -38,14 +44,20 @@
 
 - name: ensure libfreetype6, libfreetype6-dev, libfontconfig1 is installed
   apt: name={{ item }} state=present
+  become: yes
+  become_method: sudo
   with_items:
     - libfreetype6
     - libfreetype6-dev
     - libfontconfig1
 
 - name: 'Accept License mscorefonts'
+  become: yes
+  become_method: sudo
   shell: 'echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections'
 
 - name: 'ensurettf-mscorefonts-installer is installed'
+  become: yes
+  become_method: sudo
   apt: name=ttf-mscorefonts-installer state=present
 
