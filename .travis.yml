@@ -3,7 +3,7 @@ sudo: required
 
 env:
   - distribution: ubuntu
-    version: xenial-20160314.4
+    version: 16.04
     init: /sbin/init
     run_opts: ""
   - distribution: ubuntu
