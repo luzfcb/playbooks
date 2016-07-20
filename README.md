@@ -9,7 +9,7 @@ Automatic install (only on Ubuntu)
 ----------------------------------
 
 
-Faça o fork do repositorio e modifique o arquivo `workstation.yml` com as suas configuracoes pessoais.
+Faça o fork do repositorio e modifique o arquivo [`workstation.yml`](https://github.com/luzfcb/playbooks/blob/master/workstation.yml) e [`deploy_my_machine.sh`](https://github.com/luzfcb/playbooks/blob/master/deploy_my_machine.sh#L12-L13) e insira as suas configurações pessoais.
 
 
 ```
