@@ -1,10 +1,10 @@
-FROM ubuntu:xenial-20160314.4
+FROM ubuntu:xenial
 # add support to 32bit packages
 RUN dpkg --add-architecture i386
 
 # Install Ansible
 RUN apt-get update
-RUN apt-get install -y software-properties-common python-dev build-essential wget --yes --quiet
+RUN apt-get install -y software-properties-common python-dev build-essential libssl-dev libffi-dev wget --yes --quiet
 RUN wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
 RUN python2 /tmp/get-pip.py -U
 RUN pip install ansible
