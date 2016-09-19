@@ -8,13 +8,13 @@
   become_method: sudo
 
 - name: download smartgit
-  shell: aria2c -k 4M -x 10 -c --dir={{ ansible_env.HOME }}/binarios/smartgit/ --out=smartgit-linux-7_1_2.tar.gz http://www.syntevo.com/static/smart/download/smartgit/smartgit-linux-7_1_2.tar.gz
+  shell: aria2c -k 4M -x 10 -c --dir={{ ansible_env.HOME }}/binarios/smartgit/ --out=smartgit-linux-8_0_1.tar.gz http://www.syntevo.com/static/smart/download/smartgit/smartgit-linux-8_0_1.tar.gz
   args:
     executable: /bin/bash
 
 
 - name: ensure smartgit is installed
-  unarchive: src={{ ansible_env.HOME }}/binarios/smartgit/smartgit-linux-7_1_2.tar.gz dest={{ ansible_env.HOME }}/binarios/smartgit copy=no
+  unarchive: src={{ ansible_env.HOME }}/binarios/smartgit/smartgit-linux-8_0_1.tar.gz dest={{ ansible_env.HOME }}/binarios/smartgit copy=no
 #  when: smartgit_directory_exists | changed
   register: smartgit_extracted
 
