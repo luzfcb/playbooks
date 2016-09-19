@@ -18,4 +18,13 @@
   become: yes
   become_method: sudo
 
+- name: ensure postgresql is installed
+  apt: name=postgresql state=present force=yes
+  become: yes
+  become_method: sudo
+
+- name: ensure postgresql-contrib is installed
+  apt: name=postgresql-contrib state=present force=yes
+  become: yes
+  become_method: sudo
 
