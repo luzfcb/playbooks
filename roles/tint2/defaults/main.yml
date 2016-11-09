@@ -1,5 +1,5 @@
 ---
 
 # globaly autostart tint2 after graphic login if True
-tint2_global_autostart: False
+tint2_global_autostart: True
 
