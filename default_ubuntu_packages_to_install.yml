@@ -35,6 +35,7 @@ packates_to_install:
     - ssh
     - sshfs
     - synaptic
+    - solaar-gnome3
     - tix
     - unetbootin
     - vlc
