@@ -15,7 +15,7 @@
     - simplescreenrecorder
     - postgresql
     - google-chrome
-    - smartgit
+#    - smartgit
     - hexchat
 #    - { role: pycharm, pycharm_version: "professional", pycharm_release_number: "2016.2.1" }
 # inutilidades
