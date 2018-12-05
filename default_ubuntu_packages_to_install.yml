@@ -25,7 +25,6 @@ packates_to_install:
     - libwebp-dev
     - lynx
     - macchanger
-    - macchanger-gtk
     - mesa-utils
     - mesa-utils-extra
     - p7zip-full
